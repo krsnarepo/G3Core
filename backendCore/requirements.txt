@@ -1,0 +1,10 @@
+asgiref ## ASGI for Python asynchronous communication between web apps and servers.
+Django ## The web Framework
+django-cors-headers ## To allow CORS requests
+djangorestframework ## To create RESTful APIs
+djangorestframework-simplejwt ## For JWT tokens
+PyJWT ## Allows to Encode and Decode JWTs in Python
+pytz ## Allows accurate and cross platform timezone calculations
+sqlparse ## A non-validating SQL parser
+mysqlclient ## MySQL database connector
+python-dotenv ## To read .env files
