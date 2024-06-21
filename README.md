@@ -1,6 +1,6 @@
 # Backend Core Project
 
-This repository contains the backend core for a project.
+This repository contains a backend core writen with django and a front app developed with angular.
 
 ## Installation
 
