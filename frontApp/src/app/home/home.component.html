@@ -1,7 +1,7 @@
 <div class="home-container">
     <h1>Welcome to the Home Page!</h1>
     <button *ngIf="isLogged()" (click)="logout()">Logout</button>
-    <button (click)="getUsers()">Get All Users</button>
+    <button *ngIf="isLogged()" (click)="getUsers()">Get All Users</button>
     <ul>
         <li *ngFor="let user of users">
         {{ user.username }} - {{ user.id}}

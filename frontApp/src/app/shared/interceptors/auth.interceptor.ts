@@ -5,15 +5,15 @@ import { ACCESS_TOKEN } from '../../../constants';
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
-  intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+  intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     const token = localStorage.getItem(ACCESS_TOKEN);
     if (token) {
-      req = req.clone({
+      request = request.clone({
         setHeaders: {
           Authorization: `Bearer ${token}`
         }
       });
     }
-    return next.handle(req);
+    return next.handle(request);
   }
 }

@@ -1,0 +1,25 @@
+.login-container {
+    max-width: 300px;
+    margin: 0 auto;
+    padding: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+  
+.form-group {
+    margin-bottom: 15px;
+}
+  
+.btn {
+    width: 100%;
+}
+  
+.is-invalid {
+    border-color: #dc3545;
+}
+  
+.invalid-feedback {
+    color: #dc3545;
+    font-size: 80%;
+}
