@@ -16,15 +16,21 @@ Activate the virtual environment:
 env/Scripts/activate
 ```
 
-## Install dependencies
+Install the dependencies 
 
 ```bash
 pip install -r requirements.txt
 ```
-## Running the Server
+Run the server
 ```bash
 python manage.py runserver
 ```
+
+Finally run the front app server
+```bash
+ng serve
+```
+
 ## Contributing
 Contributions are welcome. Please fork the repository and submit pull requests.
 
