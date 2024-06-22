@@ -60,6 +60,7 @@ INSTALLED_APPS = [
     'corsheaders',
     'login',
     'gestion_solicitud',
+    'gestion_envio',
 ]
 
 MIDDLEWARE = [
