@@ -26,6 +26,11 @@ Run the server
 python manage.py runserver
 ```
 
+Install angular dependencies
+```bash
+npm install
+```
+
 Finally run the front app server
 ```bash
 ng serve
