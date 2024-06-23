@@ -3,5 +3,5 @@ from .models import Worker, WorkerType
 
 # Register your models here.
 
-#admin.site.register(Worker)
-#admin.site.register(WorkerType)
+admin.site.register(Worker)
+admin.site.register(WorkerType)
