@@ -35,7 +35,7 @@ class PedidoListCreate(generics.ListCreateAPIView):
                 total_price += paquete.precio
             
             return Response({
-                'message': 'Pedido created',
+                'pedido_id': pedido.pk,# needs to be received in frontend and returned back
                 'total_price': total_price,
                 'list_price': list_price
             })
