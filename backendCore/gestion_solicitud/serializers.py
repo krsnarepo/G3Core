@@ -30,4 +30,17 @@ class PedidoSerializer(serializers.ModelSerializer):
         for paquete_data in paquetes_data:
             Paquete.objects.create(pedido=pedido, **paquete_data)
         return pedido
-        
+
+class ComprobanteSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Comprobante
+        fields = '__all__'
+
+
+class TablaPreciosSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = TablaPrecios
+        fields = '__all__'
+
+    def create(self, validated_data):
+        return super().create(validated_data)
