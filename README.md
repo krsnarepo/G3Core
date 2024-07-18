@@ -7,19 +7,24 @@ This repository contains a backend core writen with django and a front app devel
 Clone the repository:
 
 ```bash
-git clone https://github.com/krsnarepo/backendCore.git
+git clone https://github.com/krsnarepo/G3Core.git
 ```
 ## Windows Instructions
-Activate the virtual environment:
 
+Install dependencies via venv
 ```bash
+py -m venv env
 env/Scripts/activate
-```
-
-Install the dependencies 
-
-```bash
 pip install -r requirements.txt
+```
+Set up database
+```bash
+py manage.py makemigrations
+py manage.py migrate
+```
+Create superuser
+```bash
+py manage.py createsuperuser
 ```
 Run the server
 ```bash

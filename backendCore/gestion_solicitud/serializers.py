@@ -5,8 +5,8 @@ from .models import *
 class PaqueteSerializer(serializers.ModelSerializer):
     class Meta:
         model = Paquete
-        fields = '__all__'
-        extra_kwargs = {"pedido": {"required": False}}
+        fields = ['peso', 'largo', 'ancho', 'altura', 'descripcion', 'precio', 'codigo','pedido', 'tipo']
+        extra_kwargs = {"pedido": {"required": False}, 'codigo': {'read_only': True}}
     # def create(self, validated_data):
     #     return super().create(**validated_data)
 
@@ -14,8 +14,8 @@ class PedidoSerializer(serializers.ModelSerializer):
     paquetes = PaqueteSerializer(many=True)
     class Meta:
         model = Pedido
-        fields = '__all__'
-        extra_kwargs = {"cliente": {"read_only": True}}
+        exclude = ['doc_control']
+        extra_kwargs = {"cliente": {"read_only": True}, "doc_control": {"required": False, "write_only": True}, "state": {"read_only": True}}
     
     def validate_paquetes(self, value):
         if not value:

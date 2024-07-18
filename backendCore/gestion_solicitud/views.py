@@ -1,5 +1,5 @@
 from django.shortcuts import get_object_or_404
-from rest_framework import generics
+from rest_framework import generics, status
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.views import APIView
@@ -13,7 +13,6 @@ from .serializers import *
 # Create your views here.
 
 class PedidoListCreate(generics.ListCreateAPIView):
-    #queryset = Pedido.objects.all()
     serializer_class = PedidoSerializer
     permission_classes = [IsAuthenticated]
     
@@ -24,8 +23,9 @@ class PedidoListCreate(generics.ListCreateAPIView):
         return Pedido.objects.filter(cliente=user.cliente)
     
     @transaction.atomic
-    def perform_create(self, serializer):
-        if (serializer.is_valid()):
+    def create(self, request):
+        serializer = self.get_serializer(data=request.data)
+        if serializer.is_valid():
             pedido = serializer.save(cliente=self.request.user.cliente, state='unconfirmed')
             total_price = 0
             list_price = []
@@ -33,77 +33,49 @@ class PedidoListCreate(generics.ListCreateAPIView):
                 paquete.calculate_price()
                 list_price.append(paquete.precio)
                 total_price += paquete.precio
-            
-            return Response({
-                'pedido_id': pedido.pk,# needs to be received in frontend and returned back
+
+            response_data = {
+                'num_pedido': pedido.num_pedido, # needs to be received in frontend and returned back to confirm view
                 'total_price': total_price,
                 'list_price': list_price
-            })
-            # Comprobante.objects.create(
-            #     nombre_cliente=pedido.nombre,
-            #     apellido_cliente=pedido.apellido,
-            #     dni_cliente=pedido.dni_emisor,
-            #     pedido=pedido,
-            #     monto=total_price
-            # )
+            }
+
+            headers = self.get_success_headers(serializer.data)
+            return Response(response_data, status=status.HTTP_201_CREATED, headers=headers)
         else:
             print(serializer.errors)
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
             
 class ConfirmPedidoView(generics.UpdateAPIView):
     queryset = Pedido.objects.filter(state = 'unconfirmed')
     serializer_class = PedidoSerializer
     permission_classes = [IsAuthenticated]
+    lookup_field = 'num_pedido'
     
     @transaction.atomic
     def update(self, request, *args, **kwargs):
-        if external_payment_service(self.get_object()):
-            instance = self.get_object() # This shit should work with only one order and no more
-            if instance.state != 'unconfirmed':
-                return Response({'error': 'Order already confirmed'})
-            
-            instance.state = 'confirmed'
-            instance.save()
-            
-            total_price = 0
-            
-            for paquete in instance.paquetes.all():
-                total_price += paquete.precio
-            
-            Comprobante.objects.create(
-                nombre_cliente=instance.nombre,
-                apellido_cliente=instance.apellido,
-                dni_cliente=instance.dni_emisor,
-                pedido=instance,
-                monto=total_price
-            )
-            return Response({'message': 'Order confirmed and receipt generated'})
-        else:
-            return Response({'message': 'Payment incompleted'})
+        instance = self.get_object()
+        
+        if instance.state != 'unconfirmed':
+            return Response({'error': 'Order already confirmed'}, status=status.HTTP_400_BAD_REQUEST)
+        
+        if not external_payment_service(instance):
+            return Response({'message': 'Payment incomplete'}, status=status.HTTP_402_PAYMENT_REQUIRED)
 
-class ConfirmarPedido(APIView):
-    permission_classes = [IsAuthenticated]
+        instance.state = 'confirmed'
+        instance.save()
 
-    @transaction.atomic
-    def put(self, request, pk):
-        user = request.user
-        pedido = get_object_or_404(Pedido, pk=pk, cliente=user.cliente, estado='provisional')
+        total_price = sum(paquete.precio for paquete in instance.paquetes.all())
 
-        total_price = 0
-        for paquete in pedido.paquetes.all():
-            total_price += paquete.precio
-
-        pedido.estado = 'confirmado'
-        pedido.save()
-
-        Comprobante.objects.create(
-            nombre_cliente=pedido.nombre,
-            apellido_cliente=pedido.apellido,
-            dni_cliente=pedido.dni_emisor,
-            pedido=pedido,
+        comprobante = Comprobante.objects.create(
+            nombre_cliente=instance.nombre,
+            apellido_cliente=instance.apellido,
+            dni_cliente=instance.dni_emisor,
+            pedido=instance,
             monto=total_price
         )
 
-        return Response({'message': 'Pedido confirmado y comprobante generado'})
+        return Response(ComprobanteSerializer(comprobante).data, status=status.HTTP_201_CREATED)
 
 class ListPaqueteView(generics.ListAPIView):
     queryset = Paquete.objects.all()
@@ -121,7 +93,7 @@ class ListComprobanteView(generics.ListAPIView):
 class TablaListCreate(generics.ListCreateAPIView):
     queryset = TablaPrecios.objects.all()
     serializer_class = TablaPreciosSerializer
-    permission_classes = [IsAuthenticated]
+    permission_classes = [IsManager]
     
     def get_queryset(self):
         if IsManager.has_permission(self, self.request, self):
@@ -134,3 +106,15 @@ class TablaListCreate(generics.ListCreateAPIView):
             serializer.save()
         else:
             print(serializer.errors)
+
+class TablaUpdateView(generics.UpdateAPIView):
+    queryset = TablaPrecios.objects.all()
+    serializer_class = TablaPreciosSerializer
+    permission_classes = [IsManager]
+    lookup_field = 'codigo'
+    
+    def update(self, request, *args, **kwargs):
+        if IsManager.has_permission(self, request, self):
+            return super().update(request, *args, **kwargs)
+        else:
+            return Response({'error': 'You do not have permission to update this table'})
