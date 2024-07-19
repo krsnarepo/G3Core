@@ -13,6 +13,18 @@ class UserSerializer(serializers.ModelSerializer):
         print(validated_data)
         user = User.objects.create_user(**validated_data)
         return user
+    
+class WorkerTypeSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = WorkerType
+        fields = ['name']
+
+class WorkerSerializer(serializers.ModelSerializer):
+    worker_type = WorkerTypeSerializer()
+    
+    class Meta:
+        model = Worker
+        fields = ['worker_type']
 
 class ClienteSerializer(serializers.ModelSerializer):
     class Meta:

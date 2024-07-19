@@ -6,8 +6,8 @@ from rest_framework.permissions import IsAuthenticated, AllowAny
 from rest_framework.authtoken.serializers import AuthTokenSerializer
 from rest_framework import serializers
 
-from .models import Cliente
-from .serializers import UserSerializer, ClienteSerializer
+from .models import Cliente, Worker
+from .serializers import UserSerializer, ClienteSerializer, WorkerSerializer
 
 # Create your views here.
 
@@ -59,7 +59,15 @@ class DeleteUserView(generics.DestroyAPIView):
 
     def get_object(self):
         return self.request.user
-    
+
+class WorkerTypeView(generics.RetrieveAPIView):
+    serializer_class = WorkerSerializer
+    permission_classes = [IsAuthenticated]
+
+    def get_object(self):
+        user = self.request.user
+        return Worker.objects.get(user=user)
+
 class CreateClienteView(generics.ListCreateAPIView):
     #queryset = Cliente.objects.all()
     serializer_class = ClienteSerializer
