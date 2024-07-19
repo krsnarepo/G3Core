@@ -60,6 +60,7 @@ INSTALLED_APPS = [
     'corsheaders',
     'login',
     'gestion_solicitud',
+    'gestion_paquete',
     'gestion_envio',
 ]
 
