@@ -27,7 +27,7 @@ urlpatterns = [
     path('login/token/', TokenObtainPairView.as_view(), name='get_token'),
     path('login/token/refresh/', TokenRefreshView.as_view(), name='refresh_token'),
     path('login-auth/', include('rest_framework.urls')),
-    path('', include('login.urls'), name='login'),
+    path('login/', include('login.urls'), name='login'),
     path('solicitudes/', include('gestion_solicitud.urls'), name='solicitudes'),
     path('paquetes/', include('gestion_paquete.urls'), name='paquetes'),
     path('envios/', include('gestion_envio.urls'), name='envios'),
