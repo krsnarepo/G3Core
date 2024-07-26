@@ -1,0 +1,58 @@
+<app-header-worker></app-header-worker>
+<main>
+    <h2>Mantener disponibilidad de movilidad y repartidor</h2>
+    <div class="container">
+        <section class="delivery-options">
+            <h3>Repartidor</h3>
+            <div class="option">
+                <input type="radio" id="agency" name="delivery" value="agency">
+                <label for="agency">
+                    <div class="icon">
+                        &#128119; <!-- Icon placeholder -->
+                    </div>
+                    <div class="details">
+                        <p><b>Nombre:</b></p>
+                        <p>Juan Perez</p>
+                        <p><b>Estado:</b></p>
+                        <select id="cost inputState"  class="cost form-select">
+                            <option selected>Ocupado</option>
+                            <option selected>Libre</option>
+                        </select>
+                        <p>ID: 12345678</p>
+                    </div>
+                </label>
+            </div>
+            <div class="option">
+                <input type="radio" id="home" name="delivery" value="home">
+                <label for="home">
+                    <div class="icon">
+                        &#128663; <!-- Icon placeholder -->
+                    </div>
+                    <div class="details">
+                        <p><b>Movilidad:</b></p>
+                        <p>Modelo: Yaris ax120</p>
+                        <p><b>Estado:</b></p>
+                        <select id="inputState" class="cost form-select">
+                            <option selected>Ocupado</option>
+                            <option selected>Libre</option>
+                        </select>
+                        <p>ID: 12345678</p>
+                    </div>
+                </label>
+            </div>
+        </section>
+        <section class="order-summary">
+            <div class="content-select">
+                <select>
+                    <option>Ruta 1</option>
+                    <option>Ruta 2</option>
+                    <option>Ruta 3</option>
+                </select>
+                <i></i>
+            </div>
+            <button class="actualizar-button">Actualizar</button>
+            <button class="continue-button">Continuar</button>
+        </section>
+    </div>
+</main>
+<app-footer></app-footer>

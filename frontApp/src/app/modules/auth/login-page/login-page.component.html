@@ -1,0 +1,13 @@
+<app-nav></app-nav>
+<div class="login-container">
+    <h1>ASOLUR</h1>
+    <p>“SIEMPRE CONTIGO”</p>
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+      <input type="text" formControlName="username" placeholder="Usuario" />
+      <input type="password" formControlName="password" placeholder="Password" />
+      <button type="submit">Iniciar Sesión</button>
+      <a href="#" class="forgot-password">¿Olvidaste tu contraseña?</a>
+      <!-- <button type="button" class="create-account">Crear cuenta nueva</button> -->
+    </form>
+  </div>
+<app-footer></app-footer>

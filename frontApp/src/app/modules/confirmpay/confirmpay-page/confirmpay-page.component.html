@@ -1,0 +1,51 @@
+<app-nav></app-nav>
+<div class="payment-form">
+  <div class="payment-method">
+    <h2>Método de pago:</h2>
+
+    <div class="dropdown">
+      <div class="dropdown-content">
+          <div class="payment-method">
+              <span>Tarjeta de Credito</span>
+              <img src="https://upload.wikimedia.org/wikipedia/commons/4/41/Visa_Logo.png" alt="Visa" class="icon">
+              <img src="https://upload.wikimedia.org/wikipedia/commons/a/a4/Mastercard_2019_logo.svg" alt="Mastercard" class="icon">
+          </div>
+
+      </div>
+  </div>
+  </div>
+  <div class="customer-details">
+    <h3>Datos de cliente:</h3>
+    <label for="customer-name">Nombre:</label>
+    <input type="text" id="customer-name" value="Erick Rulingstone" disabled>
+
+    <label for="customer-dni">DNI:</label>
+    <input type="text" id="customer-dni" value="78921150" disabled>
+  </div>
+
+  <div class="receiver-details">
+    <h3>Datos de receptor:</h3>
+    <label for="receiver-name">Nombre:</label>
+    <input type="text" id="receiver-name" value="Jeremy Palacios" disabled>
+
+    <label for="receiver-address">Dirección:</label>
+    <input type="text" id="receiver-address" value="Lima, Lima, Bayovar" disabled>
+  </div>
+
+  <div class="order-summary">
+    <h2>Resumen del pedido</h2>
+    <div class="order-details">
+      <p>Paquetes (n): <span>S/ 60</span></p>
+      <p>Entrega: <span>S/ 20</span></p>
+      <p>Total: <span>S/ 80</span></p>
+    </div>
+  </div>
+
+  <div class="action-buttons">
+    <button class="pay-button" type="button" (click)="openModal()">Pagar</button>
+    <app-modal-payment *ngIf="modalSwitch"></app-modal-payment>
+    <button class="cancel-button">Cancelar</button>
+  </div>
+</div>
+<br>
+<app-footer></app-footer>

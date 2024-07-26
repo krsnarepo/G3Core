@@ -1,0 +1,66 @@
+<app-header-worker></app-header-worker>
+<div class="container">
+
+    <main>
+        <form>
+            <div class="form-header">
+                <a onclick="window.history.back()" class="back-link btn btn-primary">&larr;Volver</a>
+            </div>
+            <h2>Lista de pedidos</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Código ID</th>
+                        <th>Direccion</th>
+                        <th>Cliente</th>
+                        <th>Repartidor</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>FIG-121</td>
+                        <td>Av Lurigancho 123</td>
+                        <td>Erick Chuju</td>
+                        <td>Luis Mendez</td>
+                    </tr>
+                    <tr>
+                        <td>FIG-122</td>
+                        <td>Av Mariscal 646</td>
+                        <td>Elton Minga</td>
+                        <td>Jose Pancracio</td>
+                    </tr>
+                    <tr>
+                        <td>FIG-123</td>
+                        <td>Av jardines 66</td>
+                        <td>Alex Tapia</td>
+                        <td>Kevin Pineda</td>
+                    </tr>
+
+                    <tr>
+                        <td>FIG-123</td>
+                        <td>Av Venezuela 646</td>
+                        <td>Alex Coral</td>
+                        <td>Elvis Cruz</td>
+                    </tr>
+
+                </tbody>
+            </table>
+            <div class="text-center">
+                <button type="button" class="actualizar btn btn-danger" (click)="openModal()"><b>Generar Formulario de entrega</b></button>
+                <app-correct-generate *ngIf="generate"></app-correct-generate>
+                <button type="button" onclick="window.print()" class="imprimir btn btn-warning"><b>Imprimir</b></button>
+            </div>
+        </form>
+    </main>
+</div>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<app-footer></app-footer>

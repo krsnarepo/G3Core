@@ -1,0 +1,118 @@
+<app-nav></app-nav>
+
+<div class="container">
+    <main>
+        <form [formGroup]="orderForm" (ngSubmit)="onSubmit()">
+            <div class="form-header">
+                <a href="#" class="back-link btn btn-primary" >&larr;Volver</a>
+                <h2>Formulario</h2>
+                <div class="order-number">
+                    <label for="order-number">No. Pedido:</label>
+                    <span id="order-number">12349</span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12 col-md-6 mt-3">
+                    <label for="nombre" class="form-label">Nombres:</label>
+                    <input type="text" formControlName="nombre" class="form-control"> 
+                </div>
+                <div class="col-12 col-md-6 mt-3">
+                    <label for="apellidos" class="form-label">Apellidos:</label>
+                    <input type="text" formControlName="apellido" class="form-control"> 
+                </div> 
+            </div>
+
+            <div class="row">
+                <div class="col-12 col-md-6 mt-3">
+                    <label for="telefono" class="form-label">Telefono:</label>
+                    <input type="tel" formControlName="telefono" class="form-control"> 
+                </div>
+                <div class="col-12 col-md-6 mt-3">
+                    <label for="prioridad" class="form-label">Prioridad:</label>    
+                    <select id="prioridad" formControlName="prioridad" class="form-select" placeholder="Escoger prioridad">
+                        <option selected>Inmediata</option>
+                        <option selected>Clasica</option>
+                      </select>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-12 col-md-6 mt-3">
+                    <label for="dniEmisor" class="form-label">DNI Emisor:</label>
+                    <input type="text" id="idemisor" formControlName="dni_emisor" class="form-control" placeholder="Digite el numero"> 
+                </div>
+                <div class="col-12 col-md-6 mt-3">
+                    <label for="dniReceptor" class="form-label">DNI Receptor:</label>
+                    <input type="text" id="idreceptor" formControlName="dni_receptor" class="form-control" placeholder="Digite el numero"> 
+                </div> 
+            </div>
+
+            <div class="row">
+                <div class="col-12 col-md-6 mt-3">
+                    <label for="direccion" class="form-label">Direccion de envio:</label>
+                    <input type="text" id="direccion" formControlName="direccion" class="form-control" placeholder="Digite su direccion"> 
+                </div>
+            </div>
+            
+            <div class="packages">  
+                <h3>Paquetes</h3>
+                <button (click)="addPackage()" type="button" class="add-button">Agregar</button>
+                <!--<div class="package-details mt-3">
+                    <label for="weight">Peso:</label>
+                    <input type="text" id="weight" name="weight">
+                    <label for="dimensions">Dimensiones:</label>
+                    <input type="text" id="dimensions" name="dimensions">
+                    <label for="Descripción">Descripción:</label>
+                    <input type="text" id="Descripción" name="Descripción" size="50">
+                </div>-->
+                <table formArrayName="paquetes">
+                    <thead>
+                        <tr>
+                            <th>Tipo</th>
+                            <th>Descripción</th>
+                            <th>Precio</th>
+                            <th>Largo</th>
+                            <th>Ancho</th>
+                            <th>Alto</th>
+                            <th>Peso (kg)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let package of packages.controls; let i = index" [formGroupName]="i">
+                        <td>
+                            <input type="text" formControlName="tipo" class="form-control">
+                        </td>
+                        <td>
+                            <input type="text" formControlName="descripcion" class="form-control">
+                        </td>
+                        <td>
+                            <input type="number" formControlName="precio" class="form-control">
+                        </td>
+                        <td>
+                            <input type="number" formControlName="largo" class="form-control">
+                        </td>
+                        <td>
+                            <input type="number" formControlName="ancho" class="form-control">
+                        </td>
+                        <td>
+                            <input type="number" formControlName="altura" class="form-control">
+                        </td>
+                        <td>
+                            <input type="number" formControlName="peso" class="form-control">
+                        </td>
+                        <td>
+                            <button (click)="removePackage(i)" type="button" class="delete-button">Eliminar</button>
+                        </td>
+                    </tbody>
+                </table>
+            </div>
+            <div class="form-actions">
+                <button type="button" class="cancel-button">Cancelar</button>
+                <!-- <button class="btn-primary" routerLink="/payment" >Solicitar</button> -->
+                <button (click)="onSubmit()" type="button" class="cancel-button" >Solicitar</button>
+                <!-- <a class="nav-link" routerLink="/payment">Solicitar</a> -->
+            </div>
+        </form>
+    </main>
+</div>
+<app-footer></app-footer>

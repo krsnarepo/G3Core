@@ -1,0 +1,101 @@
+<app-header-worker></app-header-worker>
+<main>
+    <section class="classification">
+        <h2>Clasificación de Paquetes</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Código</th>
+                    <th>Longitud</th>
+                    <th>Ancho</th>
+                    <th>Alto</th>
+                    <th>Peso(Kg)</th>
+                    <th>Tipo</th>
+                    <th>Precio</th>
+                    <th>Acción</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let pkg of paquetes">
+                    <td>{{ pkg.codigo }}</td>
+                    <td>{{ pkg.largo }}</td>
+                    <td>{{ pkg.ancho }}</td>
+                    <td>{{ pkg.altura }}</td>
+                    <td>{{ pkg.peso }}</td>
+                    <td>{{ pkg.tipo }}</td>
+                    <td>{{ pkg.precio }}</td>
+                    <td><button (click)="selectPackage(pkg)">Seleccionar</button></td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+    
+    <section class="selection" *ngIf="selectedPackage">
+        <h2>Usted seleccionó</h2>
+        <form>
+            <div class="row">
+                <div class="col-auto mt-3">
+                    <label for="paquete">Paquete</label>
+                    <input type="text" id="paquete" name="paquete" [(ngModel)]="selectedPackage.codigo" readonly>
+                </div>
+                <div class="col-auto mt-3">
+                    <label for="tipo">Tipo</label>
+                    <input type="text" id="tipo" name="tipo" [(ngModel)]="selectedPackage.tipo" readonly>
+                </div>
+                <div class="col-auto mt-3">
+                    <label for="peso">Peso</label>
+                    <input type="text" id="peso" name="peso" [(ngModel)]="selectedPackage.peso" readonly>
+                </div>
+            </div>
+    
+            <div class="row">
+                <div class="col-auto mt-3">
+                    <label for="precio">Precio</label>
+                    <input type="text" id="precio" name="precio" [(ngModel)]="selectedPackage.precio" readonly>
+                </div>
+                <div class="col-auto mt-3">
+                    <label for="agencia">Agencia</label>
+                    <input type="text" id="agencia" name="agencia" [(ngModel)]="agencia">
+                </div>
+                <div class="col-auto mt-3">
+                    <label for="distancia">Distancia</label>
+                    <input type="text" id="distancia" name="distancia" [(ngModel)]="distancia">
+                </div>
+            </div>
+            <button type="button" (click)="classifyPackage()">Categorizar</button>
+        </form>
+    </section>
+    
+    <section class="summary">
+        <h2>Resumen de Paquetes Clasificados</h2>
+        <table class="tab">
+            <thead>
+                <tr>
+                    <th>Código</th>
+                    <th>Paquete</th>
+                    <th>Distancia</th>
+                    <th>Agencia</th>
+                    <th>Tipo</th>
+                    <th>Precio</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let pkg of classifiedPackages">
+                    <td>{{ pkg.codigo }}</td>
+                    <td>{{ pkg.descripcion }}</td>
+                    <td>{{ pkg.distancia }}</td>
+                    <td>{{ pkg.agencia }}</td>
+                    <td>{{ pkg.tipo }}</td>
+                    <td>{{ pkg.precio }}</td>
+                    <td>{{ pkg.categoria }}</td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="buttons">
+            <button type="button" (click)="exit()">Salir</button>
+            <button type="button" (click)="confirm()">Confirmar</button>
+        </div>
+    </section>
+</main>
+
+<app-footer></app-footer>

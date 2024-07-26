@@ -1,0 +1,86 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+  }
+ 
+  .container {
+    width: 60%;
+    margin: 0 auto;
+    background-color: white;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin-top: 20px;
+    margin-bottom: 30px;
+  }
+ 
+  .search-section {
+    margin: 20px 0;
+    display: flex;
+    gap: 10px;
+  }
+ 
+  .search-section input {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+ 
+  #buscar-btn {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+ 
+  .paquete-info {
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 5px;
+  }
+ 
+  .paquete-info h2 {
+    margin-top: 0;
+  }
+ 
+  .paquete-details {
+    background-color: white;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+  }
+ 
+  .paquete-details p {
+    margin: 5px 0;
+    font-size: 16px;
+  }
+ 
+  .buttons {
+    display: flex;
+    justify-content: space-between;
+  }
+ 
+  .buttons button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    color: white;
+  }
+ 
+  #volver-btn {
+    background-color: #d9534f;
+  }
+ 
+  #notificar-btn {
+    background-color: #f0ad4e;
+  }
+ 
+  #continuar-btn {
+    background-color: #5cb85c;
+  }

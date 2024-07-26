@@ -1,0 +1,29 @@
+.navbar-brand {
+  font-weight: bold;
+  font-size: 1.9rem;
+}
+
+.nav-link {
+  color: #343a40; /* Color de los enlaces */
+}
+
+.nav-link.active {
+  color: #007bff; /* Color del enlace activo */
+}
+
+.navbar-toggler {
+  border: none; /* Elimina el borde del botón de toggle */
+}
+
+.navbar-toggler-icon {
+  background-image: url("data:image/svg+xml,..."); /* Asegúrate de que el ícono de toggle funcione correctamente */
+}
+
+.container-fluid {
+  display: flex;
+  justify-content: space-between; /* Asegura que los elementos estén distribuidos en los extremos */
+}
+
+.navbar-nav {
+  margin-left: auto; /* Empuja los enlaces de navegación hacia el extremo derecho */
+}

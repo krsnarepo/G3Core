@@ -1,0 +1,51 @@
+<div class="container mt-5">
+    <div class="card">
+
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-6 Asolur">
+                    <h1><strong>ASOLUR</strong></h1><br>
+                    <p class="dir">Calle las delicias Nº 111<br>El Agustino</p>
+                </div>
+                <div class="col-md-6 text-right fecha">
+                    <p>Fecha: {{receipt.fecha}}<br>Nº Comprobante: {{receipt.num_comprobante}}</p>
+                </div>
+            </div>
+
+            <div class="row Ea">
+                <div class="col-md-6 Envia">
+                    <p><strong>Envía:</strong><br>{{receipt.nombre_cliente}} {{receipt.apellido_cliente}}<br>DNI: {{receipt.dni_cliente}}<br>Agencia 1-La Victoria Nº 256</p>
+                </div>
+                <div class="col-md-6 text-right A">
+                    <p><strong>A:</strong><br>Erick Chuju Ayme<br>DNI: 12345678<br>Agencia 3-San Juan Lurigancho Nº 123</p>
+                </div>
+            </div>
+            <table class="table table-bordered mt-4">
+                <thead class="thead-dark">
+                    <tr>
+                        <th>Codigo</th>
+                        <th>Descripción</th>
+                        <th>Cantidad</th>
+                        <th>Total</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                      <td>{{ orderData.num_pedido }}</td>
+                      <td>{{ datos[0].descripcion }}</td>
+                      <td>{{orderData.list_price.length}}</td>
+                      <td>S/. {{orderData.total_price}}</td>
+                    </tr>
+                  </tbody>
+            </table>
+            <p class="text-right font-weight-bold text-danger">Importe total: s/ {{orderData.total_price}}</p>
+            <p class="text-primary">GRACIAS!</p>
+        </div>
+        
+    </div>
+    <div class="card-footer text-center">
+        <button (click)="finishOrder()" class="btn volver btn-secondary">Volver</button>
+        <button class="btn correo btn-primary">Enviar por correo</button>
+        <button class="btn imprimir btn-dark" onclick="window.print()">Imprimir</button>
+    </div>
+</div>

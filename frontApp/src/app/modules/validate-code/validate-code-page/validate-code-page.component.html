@@ -1,0 +1,35 @@
+<app-header-worker></app-header-worker>
+<br><br><br>
+<div class="container">
+  <main>
+    <section class="search-section">
+      <input [(ngModel)]="codeToValidate" type="text" id="codigo-paquete" placeholder="Ingrese el código del paquete"/>
+      <button type="button" id="buscar-btn" (click)="validateCode()">Buscar</button>
+    </section>
+
+    <section *ngIf="validationResult" class="paquete-info">
+      <h2>Paquete</h2>
+      <div class="paquete-details">
+        <p>Paquete N° {{ validationResult.id }}</p>
+        <p>{{ validationResult.nombre }}</p>
+        <p>S/ {{ validationResult.paquetes[0].precio }}</p>
+      </div>
+
+      <div class="buttons">
+        <button id="volver-btn">Volver</button>
+        <button
+          id="notificar-btn"
+        >
+          Notificar Discrepancia
+        </button>
+        <button
+          id="continuar-btn"
+        >
+          Continuar
+        </button>
+      </div>
+    </section>
+  </main>
+</div>
+<br><br><br><br><br><br><br><br><br>
+<app-footer></app-footer>

@@ -1,0 +1,78 @@
+body, html {
+    height: 100%;
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+  
+  .login-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #87CEEB; /* Light blue color */
+  }
+  
+  .login-container h1 {
+    font-size: 3rem;
+    color: #fff;
+    margin: 0;
+  }
+  
+  .login-container p {
+    font-size: 1.5rem;
+    color: #fff;
+    margin: 0 0 2rem 0;
+  }
+  
+  .login-container form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    max-width: 400px;
+  }
+  
+  .login-container input[type="text"], 
+  .login-container input[type="password"] {
+    width: 100%;
+    padding: 1rem;
+    margin: 0.5rem 0;
+    border: none;
+    border-radius: 5px;
+    box-sizing: border-box;
+  }
+  
+  .login-container button[type="submit"] {
+    width: 100%;
+    padding: 1rem;
+    margin: 1rem 0;
+    border: none;
+    border-radius: 5px;
+    background-color: #000;
+    color: #fff;
+    cursor: pointer;
+  }
+  
+  .login-container button[type="submit"]:hover {
+    background-color: #444;
+  }
+  
+  .login-container .forgot-password {
+    color: #fff;
+    margin-bottom: 1rem;
+  }
+  
+  .login-container .create-account {
+    padding: 1rem;
+    border: none;
+    border-radius: 5px;
+    background-color: #007bff;
+    color: #fff;
+    cursor: pointer;
+  }
+  
+  .login-container .create-account:hover {
+    background-color: #0056b3;
+  }
+  
