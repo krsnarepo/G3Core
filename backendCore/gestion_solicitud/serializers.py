@@ -40,7 +40,7 @@ class ComprobanteSerializer(serializers.ModelSerializer):
 class TablaPreciosSerializer(serializers.ModelSerializer):
     class Meta:
         model = TablaPrecios
-        fields = '__all__'
+        exclude = ['id']
 
     def create(self, validated_data):
         return super().create(validated_data)

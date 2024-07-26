@@ -54,6 +54,29 @@ class ConfirmPedidoView(generics.UpdateAPIView):
     
     @transaction.atomic
     def update(self, request, *args, **kwargs):
+        # if external_payment_service(self.get_object()):
+        #     instance = self.get_object() # This shit should work with only one order and no more
+        #     if instance.state != 'unconfirmed':
+        #         return Response({'error': 'Order already confirmed'})
+            
+        #     instance.state = 'confirmed'
+        #     instance.save()
+            
+        #     total_price = 0
+            
+        #     for paquete in instance.paquetes.all():
+        #         total_price += paquete.precio
+            
+        #     comprobante = Comprobante.objects.create(
+        #         nombre_cliente=instance.nombre,
+        #         apellido_cliente=instance.apellido,
+        #         dni_cliente=instance.dni_emisor,
+        #         pedido=instance,
+        #         monto=total_price
+        #     )
+        #     return Response(ComprobanteSerializer(comprobante).data, status=status.HTTP_201_CREATED)
+        # else:
+        #     return Response({'message': 'Payment incompleted'})
         instance = self.get_object()
         
         if instance.state != 'unconfirmed':
@@ -89,6 +112,12 @@ class ListComprobanteView(generics.ListAPIView):
     def get_queryset(self):
         user = self.request.user
         return Comprobante.objects.filter(pedido__cliente=user.cliente)
+
+class RetrieveComprobanteView(generics.RetrieveAPIView):
+    queryset = Comprobante.objects.all()
+    serializer_class = ComprobanteSerializer
+    permission_classes = [IsAuthenticated]
+    lookup_field = 'num_comprobante'
     
 class TablaListCreate(generics.ListCreateAPIView):
     queryset = TablaPrecios.objects.all()
@@ -118,3 +147,10 @@ class TablaUpdateView(generics.UpdateAPIView):
             return super().update(request, *args, **kwargs)
         else:
             return Response({'error': 'You do not have permission to update this table'})
+        
+class TablaDeleteView(generics.DestroyAPIView):
+    queryset = TablaPrecios.objects.all()
+    serializer_class = TablaPreciosSerializer
+    permission_classes = [IsManager]
+    lookup_field = 'codigo'
+

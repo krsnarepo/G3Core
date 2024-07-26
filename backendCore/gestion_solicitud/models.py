@@ -56,6 +56,7 @@ class Paquete(models.Model):
      # Nuevos campos agregados para la clasificación
     distancia = models.DecimalField(max_digits=4, decimal_places=2, null=True, blank=True)
     agencia = models.CharField(max_length=100, null=True, blank=True)
+    validado = models.BooleanField(default=False)
     clasificado = models.BooleanField(default=False)
 
     def __str__(self):
@@ -114,3 +115,10 @@ class Comprobante(models.Model):
     def __str__(self):
         return self.nombre_cliente + " " + self.apellido_cliente
         
+    # def update_totalprice(self, pedido):
+    #     totalprice = 0
+    #     for paquete in pedido.paquetes:
+    #         totalprice += self.calculate_price(pedido, paquete)
+    #     return totalprice
+    
+    
