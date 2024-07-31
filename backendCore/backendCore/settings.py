@@ -102,6 +102,15 @@ WSGI_APPLICATION = 'backendCore.wsgi.application'
 
 DATABASES = {
     'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': os.getenv('MYSQL_DATABASE'),
+        'USER': os.getenv('MYSQL_USER'),
+        'PASSWORD': os.getenv('MYSQL_ROOT_PASSWORD'),
+        'HOST': os.getenv('MYSQL_HOST'),
+        'PORT': os.getenv('MYSQL_PORT'),
+        
+    },
+    'mysql': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
     }
@@ -149,6 +158,14 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-CORS_ALLOW_ALL_ORIGINS = True ## Change this later
+CORS_ALLOW_ALL_ORIGINS = False ## Change this later
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:4200",
+]
+CORS_ALLOW_CREDENTIALS = True
 
-CORS_ALLOWS_CREDENTIALS = True
+## Change all of this later
+# CSRF_COOKIE_SAMESITE = 'None' 
+# SESSION_COOKIE_SAMESITE = 'None' 
+# CSRF_COOKIE_SECURE = True
+# SESSION_COOKIE_SECURE = True
