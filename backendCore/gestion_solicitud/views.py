@@ -89,17 +89,17 @@ class ListComprobanteView(generics.ListAPIView):
     def get_queryset(self):
         user = self.request.user
         return Comprobante.objects.filter(pedido__cliente=user.cliente)
+
+class RetrieveComprobanteView(generics.RetrieveAPIView):
+    queryset = Comprobante.objects.all()
+    serializer_class = ComprobanteSerializer
+    permission_classes = [IsAuthenticated]
+    lookup_field = 'num_comprobante'
     
 class TablaListCreate(generics.ListCreateAPIView):
     queryset = TablaPrecios.objects.all()
     serializer_class = TablaPreciosSerializer
     permission_classes = [IsManager]
-    
-    def get_queryset(self):
-        if IsManager.has_permission(self, self.request, self):
-            return TablaPrecios.objects.all()
-        else:
-            return None
     
     def perform_create(self, serializer):
         if (serializer.is_valid() and IsManager.has_permission(self, self.request, self)):
@@ -112,9 +112,9 @@ class TablaUpdateView(generics.UpdateAPIView):
     serializer_class = TablaPreciosSerializer
     permission_classes = [IsManager]
     lookup_field = 'codigo'
-    
-    def update(self, request, *args, **kwargs):
-        if IsManager.has_permission(self, request, self):
-            return super().update(request, *args, **kwargs)
-        else:
-            return Response({'error': 'You do not have permission to update this table'})
+        
+class TablaDeleteView(generics.DestroyAPIView):
+    queryset = TablaPrecios.objects.all()
+    serializer_class = TablaPreciosSerializer
+    permission_classes = [IsManager]
+    lookup_field = 'codigo'
