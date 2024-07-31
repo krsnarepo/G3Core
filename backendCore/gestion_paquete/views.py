@@ -14,8 +14,13 @@ class ValidarView(generics.GenericAPIView):
     permission_classes = [IsWarehouseWorker]
 
     def post(self, request, *args, **kwargs):
-        codigo_paquete = request.data.get('codigo_paquete')
-        print(request.session['formularios'])
+        if not self.request.session.exists(self.request.session.session_key):
+            self.request.session.create()
+            print(self.request.session.session_key + " created")
+        else:
+            print(self.request.session.session_key + " exists")
+        codigo_paquete = self.request.data.get('codigo_paquete')
+        #print(self.request.session['formularios'])
         
         if not codigo_paquete:
             return Response({"mensaje": "Código de paquete es requerido"}, status=status.HTTP_400_BAD_REQUEST)
@@ -29,40 +34,51 @@ class ValidarView(generics.GenericAPIView):
         if self.is_package_validated(request, paquete.codigo):
             return Response({"mensaje": "Paquete ya ha sido validado"}, status=status.HTTP_400_BAD_REQUEST)
         
-        self.add_package_to_session(request, paquete.codigo)
-
         # Validate order state as "confirmed"
         if formulario.state == "confirmed" and not formulario.doc_control:
-            self.add_order_to_session(request, formulario.id)
+            self.add_package_to_session(request, paquete.codigo)
+            self.add_order_to_session(request, formulario.num_pedido)
             return Response({"mensaje": "Validación exitosa",
                              "formulario": PedidoSerializer(formulario).data}, status=status.HTTP_200_OK)
-        
-        return Response({
-            "mensaje": "Validación fallida, formulario no confirmado o ya ha sido procesado a doc_control"
-            }, status=status.HTTP_400_BAD_REQUEST)
+        else:
+            # remove recently added package from session
+            self.delete_package_from_session(request, paquete.codigo)
+            return Response({"mensaje": "Validación fallida, formulario no confirmado o ya ha sido procesado a doc_control"}, status=status.HTTP_400_BAD_REQUEST)
             
     def is_package_validated(self, request, codigo_paquete):
-        return codigo_paquete in request.session.get('paquete', [])
+        return codigo_paquete in self.request.session.get('paquete', [])
     
     def add_package_to_session(self, request, codigo_paquete):
-        if 'paquete' not in request.session:
-            request.session['paquete'] = []
+        if 'paquete' not in self.request.session:
+            self.request.session['paquete'] = []
         if codigo_paquete not in request.session['paquete']:
-            request.session['paquete'].append(codigo_paquete)
-            request.session.modified = True
+            self.request.session['paquete'].append(codigo_paquete)
+            self.request.session.modified = True
             
-    def add_order_to_session(self, request, formulario_id):
+    def add_order_to_session(self, request, formulario_num_pedido):
         if 'formularios' not in request.session:
             request.session['formularios'] = []
-        if formulario_id not in request.session['formularios']:
-            request.session['formularios'].append(formulario_id)
+        if formulario_num_pedido not in request.session['formularios']:
+            request.session['formularios'].append(formulario_num_pedido)
             request.session.modified = True
+            
+    def delete_package_from_session(self, request, codigo_paquete):
+        if 'paquete' in request.session:
+            if codigo_paquete in request.session['paquete']:
+                request.session['paquete'].remove(codigo_paquete)
+                request.session.modified = True
+            else:
+                print("Paquete no encontrado en la sesión")
+        else:
+            print("No hay paquetes en la sesión")
 
 class ClassifiedPaqueteGetView(generics.ListAPIView):
     serializer_class = PaqueteSerializer
     permission_classes = [IsWarehouseWorker]
     
     def get_queryset(self):
+        print(self.request.session.keys())
+        print(self.request.session.session_key)
         paquete_codigo = self.request.session.get('paquete', [])
         return Paquete.objects.filter(codigo__in=paquete_codigo, clasificado=False)
 
@@ -75,16 +91,20 @@ class PaqueteUpdateView(generics.UpdateAPIView):
     def update(self, request, *args, **kwargs):
         # self.delete_package_from_session(request, kwargs['codigo'])
         print(request.session['paquete'])
-        if IsWarehouseWorker.has_permission(self, request, self):
-            package = self.get_object()
-            # package.distancia = request.data.get('distancia')
-            # package.agencia = request.data.get('agencia')
-            if package.codigo in request.session.get('paquete', []):
-                package.clasificado = True
-                return super().update(request, *args, **kwargs)
-            return Response({'message': 'Paquete no validado'}, status=status.HTTP_400_BAD_REQUEST)
+        print(request.session['formularios'])
+        package = self.get_object()
+        # package.distancia = request.data.get('distancia')
+        # package.agencia = request.data.get('agencia')
+        if package.codigo in request.session.get('paquete', []):
+            package.clasificado = True
+            serializer = self.get_serializer(package, data=request.data, partial=True)
+            serializer.is_valid(raise_exception=True)
+            self.perform_update(serializer)
+            print("Paquete validado")
+            return super().update(request, *args, **kwargs)
         else:
-            return Response({'message': 'No tienes permiso para actualizar paquetes'}, status=status.HTTP_403_FORBIDDEN)
+            print("Paquete no validado")
+            return Response({'message': 'Paquete no validado'}, status=status.HTTP_400_BAD_REQUEST)
         
     def delete_package_from_session(self, request, codigo_paquete):
         if 'paquete' in request.session:
@@ -99,25 +119,31 @@ class DocumentoControlCreateView(generics.CreateAPIView):
         # Verificar si disparar la creación del documento de control
         # en la interfaz de validar o en la de generar documento
         if 'formularios' in request.session:
-            formularios_ids = request.session['formularios']
-            formularios = Pedido.objects.filter(id__in=formularios_ids)
+            formularios_num_pedido = request.session['formularios']
+            formularios = Pedido.objects.filter(num_pedido__in=formularios_num_pedido)
+            
+            if not formularios:
+                self.clean_session(request)
+                return Response({"mensaje": f"No se encontraron formularios con ${formularios_num_pedido}"}, status=status.HTTP_400_BAD_REQUEST)
 
             doc_control = DocumentoControl.objects.create()
             doc_control.save()
             
-            # for formulario in formularios:
-            #     formulario.doc_control = doc_control
-            #     formulario.save()
+            for formulario in formularios:
+                formulario.doc_control = doc_control
+                formulario.save()
 
             # Limpiar la sesión
-            del request.session['formularios']
-            request.session.modified = True
-            
-            del request.session['paquete']
-            request.session.modified = True
+            self.clean_session(request)
 
             return Response(DocumentoControlSerializer(doc_control).data, status=status.HTTP_201_CREATED)
         return Response({"mensaje": "No hay formularios acumulados"}, status=status.HTTP_400_BAD_REQUEST)
+    
+    def clean_session(self, request):
+        del request.session['formularios']
+        request.session.modified = True
+        del request.session['paquete']
+        request.session.modified = True
 
 class DocumentoControlUpdateView(generics.UpdateAPIView):
     serializer_class = DocumentoControlSerializer
