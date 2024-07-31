@@ -16,10 +16,11 @@ class Cliente(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='cliente')
 
     def __str__(self):
-        return self.nombre
+        return self.nombre + " " + self.user.username
     
 class WorkerType(models.Model):
-    name = models.CharField(max_length=100)
+    choices = [('warehouse', 'Trabajador de Almacen'), ('delivery', 'Repartidor'), ('client', 'Cliente'), ('manager', 'Jefe de Logistica'), ('receptionist', 'Recepcionista')]
+    name = models.CharField(max_length=25, choices=choices, unique=True, default='client')
     
     def __str__(self):
         return self.name
