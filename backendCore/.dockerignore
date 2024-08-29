@@ -1,0 +1,16 @@
+# Ignorar dependencias locales
+# env/
+# venv/
+**/__pycache__
+*.pyc
+*.pyo
+# .env
+.gitignore
+entrypoint.sh
+
+# Ignorar archivos de bases de datos locales
+db.sqlite3
+
+# Ignorar archivos de logs y temporales
+*.log
+*.tmp

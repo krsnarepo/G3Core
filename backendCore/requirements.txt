@@ -8,3 +8,4 @@ pytz ## Allows accurate and cross platform timezone calculations
 sqlparse ## A non-validating SQL parser
 mysqlclient ## MySQL database connector
 python-dotenv ## To read .env files
+gunicorn ## WSGI HTTP Server for UNIX

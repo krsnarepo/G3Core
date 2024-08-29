@@ -1,0 +1,45 @@
+
+services:
+  mysqldb:
+    image: mysql:latest
+    restart: always
+    volumes:
+      - backend_mysql_data:/var/lib/mysql
+    environment:
+      MYSQL_DATABASE: backendCore
+      MYSQL_ROOT_PASSWORD: 12G1253g
+      MYSQL_USER: user
+      MYSQL_PASSWORD: 12G1253g
+    ports:
+      - "3306:3306"
+    networks:
+      - backend
+
+  backend:
+    build: 
+      context: ./backendCore
+      dockerfile: Dockerfile
+    # command: gunicorn --bind 0.0.0.0:8000 backendCore.wsgi:application
+
+    # Volumes in a Compose service are used to persist data and share files between containers and the host machine.
+    # They provide a way to store and retrieve data that needs to be preserved even if the container is stopped or removed.
+    # Volumes can be used to store database files, configuration files, logs, or any other data that needs to be accessed by multiple containers.
+    # By using volumes, you can separate the data from the container, making it easier to manage and backup.
+    # volumes:
+    #   - .:/app
+    ports:
+      - "8000:8000"
+    # environment:
+    #   - DJANGO_SETTINGS_MODULE=backendCore.settings
+    depends_on:
+      - mysqldb
+    networks:
+      - backend
+      - frontend
+
+networks:
+  backend:
+  frontend:
+
+volumes:
+  backend_mysql_data:
