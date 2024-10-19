@@ -1,0 +1,109 @@
+<app-header-worker></app-header-worker>
+<main>
+    <form>
+        <div class="form-header">
+            <a href="#" class="back-link btn btn-primary">&larr; <b>Inicio</b></a>
+        </div>
+        <h2>Lista de precios</h2>
+        <table mat-table [dataSource]="PreciosFormArray.controls" class="mat-elevation-z8">
+            <ng-container matColumnDef="select">
+              <th mat-header-cell *matHeaderCellDef></th>
+              <td mat-cell *matCellDef="let element; let i = index">
+                <mat-radio-button (click)="selectRow(i)" [checked]="selectedRowIndex === i"></mat-radio-button>
+              </td>
+            </ng-container>
+          
+            <ng-container matColumnDef="codigo">
+              <th mat-header-cell *matHeaderCellDef>Codigo</th>
+              <td mat-cell *matCellDef="let element">
+                <input type="text" matInput [formControl]="element.get('codigo')" type="text" class="form-control">
+              </td>
+            </ng-container>
+          
+            <ng-container matColumnDef="tipo_paquete">
+              <th mat-header-cell *matHeaderCellDef>Tipo Paquete</th>
+              <td mat-cell *matCellDef="let element">
+                <input matInput [formControl]="element.get('tipo_paquete')" type="text" class="form-control">
+              </td>
+            </ng-container>
+
+            <ng-container matColumnDef="distancia">
+              <th mat-header-cell *matHeaderCellDef>Distancia</th>
+              <td mat-cell *matCellDef="let element">
+                <input matInput [formControl]="element.get('distancia')" type="number" class="form-control">
+              </td>
+            </ng-container>
+
+            <ng-container matColumnDef="peso">
+              <th mat-header-cell *matHeaderCellDef>Peso</th>
+              <td mat-cell *matCellDef="let element">
+                <input matInput [formControl]="element.get('peso')" type="number" class="form-control">
+              </td>
+            </ng-container>
+
+            <ng-container matColumnDef="precio">
+              <th mat-header-cell *matHeaderCellDef>Precio</th>
+              <td mat-cell *matCellDef="let element">
+                <input matInput [formControl]="element.get('precio')" type="number" class="form-control">
+              </td>
+            </ng-container>
+
+            <ng-container matColumnDef="agencia1">
+                <th mat-header-cell *matHeaderCellDef>Agencia 1</th>
+                <td mat-cell *matCellDef="let element">
+                    <input matInput [formControl]="element.get('agencia1')" type="number" class="form-control">
+                </td>
+            </ng-container>
+
+            <ng-container matColumnDef="agencia2">
+                <th mat-header-cell *matHeaderCellDef>Agencia 2</th>
+                <td mat-cell *matCellDef="let element">
+                    <input matInput [formControl]="element.get('agencia2')" type="number" class="form-control">
+                </td>
+            </ng-container>
+
+            <ng-container matColumnDef="agencia3">
+                <th mat-header-cell *matHeaderCellDef>Agencia 3</th>
+                <td mat-cell *matCellDef="let element">
+                    <input matInput [formControl]="element.get('agencia3')" type="number" class="form-control">
+                </td>
+            </ng-container>
+
+            <ng-container matColumnDef="agencia4">
+                <th mat-header-cell *matHeaderCellDef>Agencia 4</th>
+                <td mat-cell *matCellDef="let element">
+                    <input matInput [formControl]="element.get('agencia4')" type="number" class="form-control">
+                </td>
+            </ng-container>
+                    
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+        <div class="container text-center mt-3">
+            <button mat-raised-button color="primary" (click)="addPrecio()">Añadir Fila</button>
+        </div>
+        <div class="container text-center mt-5">
+            <div class="row justify-content-center">
+                <div class="col-auto">
+                    <button mat-raised-button color="primary" (click)="createPrecio()">Crear</button>
+                </div>
+                <div class="col-auto">
+                    <button mat-raised-button color="accent" (click)="updatePrecio()">Actualizar</button>
+                </div>
+                <div class="col-auto">
+                    <button mat-raised-button color="warn" (click)="deletePrecio()">Eliminar</button>
+                </div>
+            </div>
+        </div>
+    </form>
+</main>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<app-footer></app-footer>

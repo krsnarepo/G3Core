@@ -1,0 +1,44 @@
+<app-header-worker></app-header-worker>
+<div class="container">
+    <main>
+        <section class="breadcrumb">
+          <a href="#"><b>&larr; Documento de Control > Actualizar</b></a>
+        </section>
+ 
+        <section class="control-document">
+            <label for="fecha">Ingrese el numero del documento de control: </label>
+            <input #cod_doc type="text" id="numeroControl" placeholder="Ingrese el numero de documento de control">
+            <button (click)="onSearch()" id="generate-btn">Buscar</button>
+            <h2>Documento de Control</h2>
+            <p>Documento de Control N° </p>
+ 
+            <table>
+                <thead>
+                    <tr>
+                        <th>Formularios</th>
+                        <th># Paquetes</th>
+                        <th>Descripción</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let arr of list">
+                        <td>
+                            <input type="text" class="form-control" id="codigo" name="codigo" value="{{arr.codigo}}">
+                        </td>
+                        <td>
+                            <input type="text" class="form-control" id="desc" name="desc" value="{{arr.desc}}">
+                        </td>
+                        <td>Sábanas</td>
+                    </tr>
+                </tbody>
+            </table>
+ 
+            <div class="buttons">
+                <button id="cancel-btn">Cancelar</button>
+                <button id="print-btn">Imprimir</button>
+            </div>
+        </section>
+    </main>
+  </div>
+
+  <app-footer></app-footer>

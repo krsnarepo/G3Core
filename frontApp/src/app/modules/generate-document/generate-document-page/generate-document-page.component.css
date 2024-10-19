@@ -1,0 +1,91 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+  }
+ 
+  .container {
+    width: 80%;
+    margin: 0 auto;
+    background-color: white;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+ 
+  .breadcrumb {
+    margin: 20px 0;
+  }
+ 
+  .breadcrumb a {
+    text-decoration: none;
+    color: #333;
+  }
+ 
+  .control-document {
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 5px;
+  }
+ 
+  .control-document label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+  }
+ 
+  .control-document input {
+    width: 10%;
+    padding: 8px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+ 
+  .control-document button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-right: 10px;
+    margin-left: 15px;
+  }
+ 
+  #generate-btn {
+    background-color: #007bff;
+    color: white;
+  }
+ 
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+  }
+ 
+  table, th, td {
+    border: 1px solid #ddd;
+  }
+ 
+  th, td {
+    padding: 10px;
+    text-align: left;
+  }
+ 
+  th {
+    background-color: #f2f2f2;
+  }
+ 
+  .buttons {
+    display: flex;
+    justify-content: space-between;
+  }
+ 
+  #cancel-btn {
+    background-color: #d9534f;
+    color: white;
+  }
+ 
+  #print-btn {
+    background-color: #5cb85c;
+    color: white;
+  }

@@ -1,13 +1,16 @@
 import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { HomePageComponent } from './modules/home/home-page/home-page.component';
+import { LoginPageComponent } from './modules/auth/login-page/login-page.component';
+import { NavComponent } from './shared/components/nav/nav.component';
+import { FooterComponent } from './shared/components/footer/footer.component';
 
 @Component({
   selector: 'app-root',
-  standalone: true,
-  imports: [RouterOutlet],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.css'
+  styleUrls: ['./app.component.css'],
+  // imports: [HomePageComponent,LoginPageComponent,NavComponent,FooterComponent],
+  // standalone : True
 })
 export class AppComponent {
-  title = 'frontApp';
+  title = 'fronted';
 }

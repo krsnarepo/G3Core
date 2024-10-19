@@ -1,0 +1,43 @@
+
+<app-header-worker></app-header-worker>
+
+<div class="container">
+    <main>
+        <section class="breadcrumb">
+          <a href="#"><b>&larr; Documento de Control > Generar</b></a>
+        </section>
+ 
+        <section class="control-document">
+            <label for="fecha">Ingrese la fecha: </label>
+            <input type="text" id="fecha" placeholder="dd/mm/yyyy">
+            <button (click)="loadDocument()" id="generate-btn">Generar</button>
+ 
+            <h2>Documento de Control</h2>
+            <p>Documento de Control N° {{document.numero_documento}}</p>
+ 
+            <table>
+                <thead>
+                    <tr>
+                        <th>Formularios</th>
+                        <th># Paquetes</th>
+                        <th>Descripción</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let form of order">
+                        <td>{{form.num_pedido}}</td>
+                        <td>{{form.num_paquetes}}</td>
+                        <td>{{form.descripcion}}</td>
+                    </tr>
+                </tbody>
+            </table>
+ 
+            <div class="buttons">
+                <button id="cancel-btn">Cancelar</button>
+                <button id="print-btn">Imprimir</button>
+            </div>
+        </section>
+    </main>
+  </div>
+  <app-footer></app-footer>
+

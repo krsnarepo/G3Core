@@ -1,0 +1,68 @@
+body {
+    display: block;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5);
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+
+.popup {
+    background-color: #f3f3f3;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    width: 300px;
+    text-align: center;
+    position: relative;
+}
+
+.content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.success-icon {
+    width: 50px;
+    height: 50px;
+    margin-bottom: 20px;
+}
+
+h1 {
+    margin: 10px 0;
+    font-size: 24px;
+    color: #333;
+}
+
+.btn {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 10px 0;
+    font-size: 16px;
+}
+
+.yellow-btn {
+    background-color: #ffcc00;
+    color: #333;
+}
+
+.blue-btn {
+    background-color: #002f4b;
+    color: white;
+    margin-right: 10px;
+}
+
+.gold-btn {
+    background-color: #d4af37;
+    color: #333;
+}
+
+.actions {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}

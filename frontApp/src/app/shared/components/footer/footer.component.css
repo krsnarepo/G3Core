@@ -1,0 +1,109 @@
+/* Aplicar estilos generales para la página */
+html, body {
+  height: 100%;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Asegurar que el contenedor principal ocupe el espacio necesario */
+.main-content {
+  flex: 1;
+}
+
+/* Estilo para la sección de contacto (footer) */
+.contact-section {
+  text-align: center;
+  background-color: #111111; /* Ajusta el color de fondo según sea necesario */
+  color: #ffffff; /* Color del texto */
+  padding: 20px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.contact-section h3 {
+  margin: 0;
+  padding-bottom: 10px;
+  font-size: 1.5rem;
+}
+
+.contact-section .phone {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.2rem;
+  margin: 10px 0;
+}
+
+.contact-section .phone i {
+  margin-right: 10px;
+}
+
+.contact-section hr {
+  border: 0.5px solid #444444;
+  width: 80%;
+  margin: 20px auto;
+}
+
+.footer-links {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  font-size: 0.9rem;
+}
+
+.footer-links a {
+  color: #ffffff;
+  text-decoration: none;
+  margin: 5px 10px;
+  white-space: nowrap; /* Evita que los textos largos se dividan en varias líneas */
+}
+
+.footer-links a:hover {
+  text-decoration: underline;
+}
+
+.social-icon {
+  font-size: 1.5rem;
+}
+
+.social-icon i {
+  margin-right: 10px;
+}
+
+/* Media Queries para reactividad */
+@media (max-width: 768px) {
+  .contact-section h3 {
+    font-size: 1.2rem;
+  }
+  .contact-section .phone {
+    font-size: 1rem;
+  }
+  .footer-links {
+    gap: 10px;
+  }
+  .footer-links a {
+    font-size: 0.8rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .contact-section {
+    padding: 10px;
+  }
+  .contact-section h3 {
+    font-size: 1rem;
+  }
+  .contact-section .phone {
+    font-size: 0.8rem;
+  }
+  .footer-links {
+    flex-direction: column;
+    gap: 5px;
+  }
+  .footer-links a {
+    font-size: 0.7rem;
+  }
+}

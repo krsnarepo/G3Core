@@ -1,0 +1,64 @@
+<nav class="navbar navbar-expand-lg bg-body-tertiary">
+  <div class="container-fluid">
+    <a class="navbar-brand" routerLink="/">ASOLUR</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
+      <ul class="navbar-nav mb-2 mb-lg-0">
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Documento de control
+          </a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" routerLink="/generatedocument">Generar</a></li>
+            <li><a class="dropdown-item" routerLink="/updatedocument">Actualizar</a></li>
+          </ul>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Paquetes
+          </a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" routerLink="/validatecode">Buscar Paquete</a></li>
+            <li><a class="dropdown-item" routerLink="/classifypackages">Clasificar</a></li>
+          </ul>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" routerLink="/pricetable" role="button" data-bs-toggle="dropdown"
+            aria-expanded="false">
+            Precios
+          </a>
+        </li>
+
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" routerLink="/orderlist" role="button" data-bs-toggle="dropdown"
+            aria-expanded="false">
+            formulario de entrega
+
+          </a>
+        </li>
+
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" routerLink="/update" role="button" data-bs-toggle="dropdown"
+            aria-expanded="false">
+            Mis envios
+
+          </a>
+        </li>
+
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Asignaciones
+          </a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" routerLink="/assign">Asignaciones</a></li>
+            <li><a class="dropdown-item" routerLink="/keep">Mantener</a></li>
+          </ul>
+        </li>
+
+      </ul>
+    </div>
+  </div>
+</nav>

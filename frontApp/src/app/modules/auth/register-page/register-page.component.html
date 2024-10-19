@@ -1,0 +1,15 @@
+<app-nav></app-nav>
+    <div class="login-container">
+        <h1>ASOLUR</h1>
+        <p>“SIEMPRE CONTIGO”</p>
+        <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+            <input type="text" formControlName="username" placeholder="Usuario" />
+            <!--input type="text" formControlName="email" placeholder="Correo Electrónico" /-->
+            <input type="password" formControlName="password" placeholder="Contraseña" />
+            <button type="submit">Registrarse</button>
+            <div>
+                ¿Ya tienes una cuenta? <a routerLink="/">Inicia sesión aquí.</a>
+            </div>
+        </form>
+    </div>
+<app-footer></app-footer>

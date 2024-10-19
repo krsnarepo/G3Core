@@ -1,0 +1,109 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.container {
+    text-align: center;
+    background-color: white;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+}
+
+
+.receipt {
+    text-align: right;
+    margin: 20px 0;
+    padding: 20px;
+    border: 1px solid #ccc;
+}
+
+
+
+.fecha {
+    margin-left: -10px;
+}
+
+.A {
+    margin-left: -10px;
+}
+
+.dir {
+    margin: -30px;
+}
+
+.Ea {
+    margin: 40px 0;
+}
+
+.receipt p {
+    margin: 5px 0;
+}
+
+.receipt .total {
+    text-align: right;
+    font-weight: bold;
+    color: red;
+}
+
+.receipt .thanks {
+    color: blue;
+    font-size: 20px;
+    text-align: left;
+}
+
+.receipt table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.receipt table,
+th,
+td {
+    border: 1px solid black;
+}
+
+.receipt th,
+.receipt td {
+    padding: 8px;
+    text-align: left;
+}
+
+.buttons {
+    display: flex;
+    justify-content: space-around;
+}
+
+.volver {
+    margin-left: 100px;
+}
+
+.correo {
+    margin-left: 100px;
+}
+
+.imprimir {
+    margin-left: 100px;
+}
+
+button {
+    background-color: #1a1a2e;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #3e3e5e;
+}

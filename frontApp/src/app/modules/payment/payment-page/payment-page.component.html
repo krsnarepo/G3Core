@@ -1,0 +1,80 @@
+<app-nav></app-nav>
+
+    <div class="delivery-price">
+        <h2>Precio de Entrega</h2>
+        <br>
+        <br>
+        <div class="delivery-options">
+          <div class="select-delivery">
+            <h3>Elige un tipo de entrega</h3>
+            <br>
+            <br>
+            <br>
+            <div class="option">
+              <input type="radio" id="agency-pickup" name="delivery-type" />
+              <label for="agency-pickup">
+                <span class="icon">🏢</span>
+                <span>Retiro en Agencia</span>
+                <span>Tu decides cuando recogerlo</span>
+                <span class="free">Sin monto adicional</span>
+              </label>
+            </div>
+            <br>
+            <br>
+            <br>
+            <br>
+            <div class="option">
+              <input type="radio" id="home-delivery" name="delivery-type" />
+              <label for="home-delivery">
+                <span class="icon">🏠</span>
+                <span>Envío a Domicilio</span>
+                <span>Llega en 5 dias de 8 a 12 hrs.</span>
+                <span class="price">S/ 9.90</span>
+              </label>
+            </div>
+          </div>
+          <div class="order-summary">
+            <h3>Resumen de el pedido</h3>
+            <div class="summary-item">
+              <span>Paquetes ({{ numberOfPackages }})</span>
+              <span>S/ {{orderData.total_price.toFixed(2)}}</span>
+            </div>
+            <div class="summary-item">
+              <span>Entrega</span>
+              <span>S/ {{deliveryPrice.toFixed(2)}}</span>
+            </div>
+            <div class="summary-item total">
+              <span>Total</span>
+              <span>S/ {{totalPrice.toFixed(2)}}</span>
+            </div>
+            <button (click)="onPaymentComplete()">Continuar</button>
+          </div>
+        </div>
+      </div>
+
+      <!--<ng-template #noOrderData>
+        <div class="error-message">
+          <p>No se encontraron datos del pedido. Por favor, vuelve a la página de envío.</p>
+          <button routerLink="/forms">Volver a Envío</button>
+        </div>
+      </ng-template> -->
+      
+<app-footer></app-footer>
+
+
+<!-- <div class="order-summary">
+    <h3>Resumen de el pedido</h3>
+    <div class="summary-item">
+      <span>Paquetes (n)</span>
+      <span>S/ {{selectedPackages}}</span>
+    </div>
+    <div class="summary-item">
+      <span>Entrega</span>
+      <span>S/ {{deliveryCost}}</span>
+    </div>
+    <div class="summary-item total">
+      <span>Total</span>
+      <span>S/ {{totalCost}}</span>
+    </div>
+    <button>Continuar</button>
+  </div> -->

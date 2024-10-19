@@ -1,7 +1,7 @@
 # G3Core Project
 
 This repository contains a backend app writen with Django, django rest framework and jwt tokens.
-The frontend app is developed with the framework Angular v17.
+The frontend app is developed with the framework Angular v18.
 The goal of the project was to build a full stack web app for a courier business, consisting of three modules (orders, packages and delivery)
 
 ## Installation

@@ -1,0 +1,85 @@
+<app-header-worker></app-header-worker>
+<div class="container">
+
+    <main>
+        <h2>Asignación de Vehículo y Repartidor a Pedido</h2>
+        <div class="form-group">
+            <label for="pedido">Pedido</label>
+            <div class="input-container">
+                <input type="text" id="pedido1" #pedido
+                    maxlength ="30" placeholder="Ingrese pedido">
+                <button id="listar">Listar</button>
+            </div>
+        </div>
+        <section class="pedido">
+            <h3>Nº Pedido</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Código</th>
+                        <th>Lista F.</th>
+                        <th>Cantidad P.</th>
+                        <th>Descripción</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>FIG-121</td>
+                        <td>C1569</td>
+                        <td>5</td>
+                        <td>C2</td>
+                    </tr>
+                    <tr>
+                        <td>FIG-121</td>
+                        <td>C1569</td>
+                        <td>14</td>
+                        <td>C1</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+        <div class="form-group">
+            <label for="repartidor">Repartidor</label>
+            <div class="input-container">
+                <input type="text" id="repartidor" placeholder="Ingrese repartidor">
+            </div>
+        </div>
+        <section class="repartidores">
+            <h3>Repartidores</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Nombre Repartidor</th>
+                        <th>Modelo Vehículo</th>
+                        <th>Placa</th>
+                        <th>Estado Movilidad</th>
+                        <th>Ruta</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Pozo Riveros</td>
+                        <td>C1569</td>
+                        <td>KI123</td>
+                        <td>LISTO</td>
+                        <td>Ruta 1</td>
+                    </tr>
+                    <tr>
+                        <td>FIG-121</td>
+                        <td>C1569</td>
+                        <td>CE273</td>
+                        <td>LISTO</td>
+                        <td>Ruta 2</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+        <section class="asignar">
+            <div class="buttons">
+                <button id="asignar">Asignar</button>
+                <button id="volver">Volver</button>
+            </div>
+        </section>
+    </main>
+</div>
+<app-footer></app-footer>
